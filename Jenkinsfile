@@ -22,8 +22,7 @@ pipeline {
                 sh('docker run --network=host --name ${TESTS_CONTAINER} integration-tests')
             }
         }
-    }
-
+    
     post {
         always {
             sh('docker cp ${TESTS_CONTAINER}:/allure-results ${WORKSPACE}')
