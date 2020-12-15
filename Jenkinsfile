@@ -9,7 +9,7 @@ pipeline {
         disableConcurrentBuilds()
         timeout(time: 5, unit: 'MINUTES')
     }
-
+    stages {
         stage('Start service') {
             steps{
                 sh('cd app/ && docker-compose up -d --scale app=5')
@@ -22,7 +22,7 @@ pipeline {
                 sh('docker run --network=host --name ${TESTS_CONTAINER} integration-tests')
             }
         }
-    
+    }
     post {
         always {
             sh('docker cp ${TESTS_CONTAINER}:/allure-results ${WORKSPACE}')
