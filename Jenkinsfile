@@ -10,6 +10,11 @@ pipeline {
         timeout(time: 5, unit: 'MINUTES')
     }
     stages {
+        stage('Build image') {
+            steps{
+                sh('cd app/ && docker build . -t fasvan/web-site')
+            }
+        }
         stage('Start service') {
             steps{
                 sh('cd app/ && docker-compose up -d --scale app=5')
