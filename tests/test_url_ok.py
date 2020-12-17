@@ -28,4 +28,4 @@ def test_get_proxy_3004():
 
 def test_get_pgs_5432():
     r = requests.head("http://127.0.0.1:5432/")
-    assert r.status_code == 204
+    assert r.status_code == 200
